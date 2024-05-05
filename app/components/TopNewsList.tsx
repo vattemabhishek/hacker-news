@@ -6,7 +6,11 @@ import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import { StoryApiResponse } from '../type'
 
-const TopNewsList = () => {
+interface Props {
+  url: string
+}
+
+const TopNewsList = ({ url }: Props) => {
   const [pageNumber, SetPageNumber] = useState(1)
 
   // const [topStories, setTopStories] = useState([])
@@ -14,7 +18,8 @@ const TopNewsList = () => {
 
   const fetchTopNews = async () => {
     const items = await axios.get(
-      'https://hacker-news.firebaseio.com/v0/topstories.json'
+      url
+      // 'https://hacker-news.firebaseio.com/v0/topstories.json'
     )
     console.log('🚀 ~ fetchTopNews ~ items:', items)
     const testTopStories = items.data
@@ -53,7 +58,7 @@ const TopNewsList = () => {
   const changePage = (score: number) => {
     score === 1 ? SetPageNumber(pageNumber + 1) : SetPageNumber(pageNumber - 1)
   }
-
+  console.log(objArray)
   return (
     <>
       <div className='bg-orange-50 mr-3 ml-3 border-collapse border-2 border-solid w-full flex-start list-decimal list-inside '>
@@ -74,7 +79,7 @@ const TopNewsList = () => {
                 </span>
                 <div className='flex gap-5 align-middle justify-start pl-5 font-light text-xs '>
                   {story.score < 2 ? (
-                    <a href=''>{story.score} point by</a>
+                    <a href='/newStories'>{story.score} point by</a>
                   ) : (
                     <a href=''>{story.score} points by</a>
                   )}
@@ -85,7 +90,15 @@ const TopNewsList = () => {
                   <p>|</p>
                   <a href=''>hide</a>
                   <p>|</p>
-                  <a href=''>{story.descendants} comments</a>
+                  {story.descendants < 2 ? (
+                    story.descendants === 0 ? (
+                      <a href=''>no comments</a>
+                    ) : (
+                      <a href=''>1 comment</a>
+                    )
+                  ) : (
+                    <a href=''>{story.descendants} comments</a>
+                  )}
                 </div>
               </li>
             )
