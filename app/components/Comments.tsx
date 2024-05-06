@@ -9,7 +9,7 @@ const Comments = () => {
   }
   return (
     <>
-      <div className='flex gap-5 align-middle justify-start pl-5 font-light text-xs '>
+      {/* <div className='flex gap-5 align-middle justify-start pl-5 font-light text-xs '>
         <a href=''>{story.by}</a>
         <a href=''>{fetchTime(story.time)}</a>
         <p>|</p>
@@ -21,7 +21,7 @@ const Comments = () => {
       </div>
       <div className='block'>
         <p>{story.comment}</p>
-      </div>
+      </div> */}
     </>
   )
 }
