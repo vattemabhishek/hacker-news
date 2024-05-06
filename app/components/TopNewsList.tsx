@@ -12,34 +12,25 @@ interface Props {
 
 const TopNewsList = ({ url }: Props) => {
   const [pageNumber, SetPageNumber] = useState(1)
-
-  // const [topStories, setTopStories] = useState([])
   const [objArray, setObjArray] = useState<StoryApiResponse[]>([])
 
   const fetchTopNews = async () => {
-    const items = await axios.get(
-      url
-      // 'https://hacker-news.firebaseio.com/v0/topstories.json'
-    )
-    console.log('🚀 ~ fetchTopNews ~ items:', items)
+    const items = await axios.get(url)
     const testTopStories = items.data
-    // setTopStories(testTopStories)
-
     const itemList = testTopStories
       .slice((pageNumber - 1) * 10, pageNumber * 10)
       .map((topStory: number) =>
         axios.get(`https://hacker-news.firebaseio.com/v0/item/${topStory}.json`)
       )
-
     const result = await Promise.all(itemList)
-    console.log(result)
     const arr = result.map((item) => item.data)
-
     setObjArray(arr)
   }
+
   useEffect(() => {
     fetchTopNews()
   }, [pageNumber])
+
   const fetchTime = (etime: number) => {
     dayjs.extend(relativeTime)
     return dayjs.unix(etime).fromNow()
@@ -47,18 +38,16 @@ const TopNewsList = ({ url }: Props) => {
 
   const fetchUrl = (url: string) => {
     if (!url) return
-
     const reg = new RegExp('https://')
     const newUrl = url.replace(reg, '')
-
     const updatedUrl = newUrl.slice(0, newUrl.indexOf('/'))
-
     return updatedUrl
   }
+
   const changePage = (score: number) => {
     score === 1 ? SetPageNumber(pageNumber + 1) : SetPageNumber(pageNumber - 1)
   }
-  console.log(objArray)
+
   return (
     <>
       <div className='bg-orange-50 mr-3 ml-3 border-collapse border-2 border-solid w-full flex-start list-decimal list-inside '>

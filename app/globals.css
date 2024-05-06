@@ -21,3 +21,6 @@ body {
     text-wrap: balance;
   }
 }
+li::marker {
+  font-size: small;
+}

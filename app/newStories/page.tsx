@@ -1,10 +1,11 @@
 import TopNewsList from '../components/TopNewsList'
+import { newStoriesUrl } from '../url'
 
 export default function Home() {
-  const newStoriesUrl = 'https://hacker-news.firebaseio.com/v0/newstories.json'
+  const url = newStoriesUrl
   return (
     <div className='max-w-[75vw] mx-auto'>
-      <TopNewsList url={newStoriesUrl} />
+      <TopNewsList url={url} />
     </div>
   )
 }
