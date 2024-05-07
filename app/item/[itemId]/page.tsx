@@ -29,6 +29,7 @@ export default function Home({ params }) {
         {storyInfo ? (
           <div>
             <DisplayStory story={storyInfo} />
+            <AddComment />
             <Comments story={storyInfo} />{' '}
           </div>
         ) : null}

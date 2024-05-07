@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Verdana';
+  src: url('C:\Users\91738\Downloads\Verdana-Font\verdanab.ttf');
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
 }

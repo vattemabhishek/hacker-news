@@ -53,7 +53,7 @@ const TopNewsList = ({ url }: Props) => {
 
   return (
     <>
-      <div className='bg-orange-50 mr-3 ml-3 border-collapse border-2 border-solid w-full flex-start list-decimal list-inside '>
+      <div className='bg-orange-50 mr-3 ml-3 border-collapse border-2 border-solid w-full flex-start list-decimal list-inside font-Verdana'>
         <ol
           start={(pageNumber - 1) * 10 + 1}
           className='   list-decimal list-inside '

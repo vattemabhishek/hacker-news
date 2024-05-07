@@ -9,7 +9,7 @@ interface Props {
 
 const DisplayItem = ({ story }: Props) => {
   return (
-    <div>
+    <div className='font-Verdana'>
       <li key={story.id}>
         <span>
           <a href={story.url} className=' mr-10 font-sans text-sm'>
